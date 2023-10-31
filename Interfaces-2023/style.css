@@ -1756,7 +1756,7 @@ hr{
    height: max-content;
    border-radius: 3px;
    box-shadow: 0px 0px 5px 8px var(--estado);
-   background-image: url('../images/fondoPopUp.gif');
+   background-image: url('./img/fondoPopUp.gif');
    background-color: var(--estadoHover);
 
 }
