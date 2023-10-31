@@ -24,42 +24,42 @@
                   <img class="item" src="img/misJuegos.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Mis juegos</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
                 <div class="item">
                   <img class="item" src="img/accion.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Acción</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
                 <div class="item">
                   <img class="item" src="img/aventura.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Aventura</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
                 <div class="item">
                   <img class="item" src="img/carreras.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Carreras</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
                 <div class="item">
                   <img class="item" src="img/multijugador.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Multijugador</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
                 <div class="item">
                   <img class="item" src="img/deporte.svg" alt="logo" />
                   <button class="btn-nav">
                     <a>Deporte</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo rotar" />
+                    >
                   </button>
                 </div>
               </div>
@@ -69,14 +69,14 @@
             <img src="img/logoPagina.svg" class="logoNav" alt="logoPagina" /></a>
             <button class="btn-nav">
               <a>Categorías</a
-              ><img src="img/fechaAbajo.svg" class="fechaAbajo" />
+              >
             </button>
             <button class="btn-nav">
               <a>Comunidad</a
-              ><img src="img/fechaAbajo.svg" class="fechaAbajo" />
+              >
             </button>
             <button class="btn-nav">
-              <a>Soporte</a><img src="img/fechaAbajo.svg" class="fechaAbajo" />
+              <a>Soporte</a>
             </button>
 
             <div class="barraBusqueda">
@@ -95,7 +95,7 @@
                     class="btn-nav"
                   >
                     <a>Siri98</a
-                    ><img src="img/fechaAbajo.svg" class="fechaAbajo" />
+                    ><img src="img/flechaAbajo.svg" class="flechaAbajo" />
                   </button>
                 </div>
 
@@ -159,17 +159,64 @@
       <div class="breadcrumb">
         <button class="btn-nav"><a href="index.html">
     <a href="home.html">
-          Home<img src="img/fechaAbajo.svg" class="fechaAbajo rotar" /></a></button
+          Home<img src="img/flechaAbajo.svg" class="flechaAbajo rotar" /></a></button
         ><button class="btn-nav"><a href="juego.html">
-          4 en Línea<img src="img/fechaAbajo.svg" class="fechaAbajo rotar" /></a>
+          4 en Línea<img src="img/flechaAbajo.svg" class="flechaAbajo rotar" /></a>
         </button>
       </div>
       <h2>4 en Línea: Mario vs Luigi</h2>
       <section class="sectionJuego">
         <aside class="siderbarJuegoInstrucciones">
-          <div class="juego">
-            <img src="img/juego.jpg" alt="4 en linea" />
+          <div class="juegoSidebar">
+            <div class="fondo">
+              <div class="preferencias" id="preferencias">
+                  <h1>Ingresa las preferencias de juego</h1>
+                  <form id="formPreferencias" class="formPreferencias">
+                    <div class="inputPreferencias">
+                      <div class="izquierda">
+                        <p>Jugador 1</p>
+                        <select name="j1" id="j1" class="comboBox">
+                          <option value="1">Mario</option>
+                          <option value="2">Luigi</option>
+                        </select>
+                        <p>Jugador 2</p>
+                        <select name="j2" id="j2" class="comboBox">
+                          <option value="mario">Mario</option>
+                          <option value="luigi">Luigi</option>
+                          <option value="homero">Homero</option>
+                          <option value="mickey">Mickey</option>
+                        </select>
+                      </div>
+                      <div>
+                          <p>Variantes del juego</p>
+                          <select name="n_juego" id="n_juego" class="comboBox">
+                            <option value="4">4 en Linea</option>
+                            <option value="5">5 en Linea</option>
+                            <option value="6">6 en Linea</option>
+                            <option value="7">8 en Linea</option>
+                          </select>
+                        </div>
+                        <button id="iniciar" type="submit" class="jugar" name="iniciar">
+                          Jugar
+                        </button>
+                      </div>
+                  </form>
+                </div>
+              <div id="juego">
+                  <canvas id="myCanvas" width="800" height="600"></canvas>
+              <div class="popupJuego">
+                  <div class="ganador">
+                      <button class="close mx-2 text-danger">x</button>
+                      <div class="popupGanador">
+                          <p class="textoGanador">¡Ganó Jugador1!</p>
+                      </div>
+                      <button class="jugar">Juega de nuevo</button>
+                  </div>
+              </div>
+            </div>
+          </div>
             <div class="botoneraRedes">
+              <button class="jugar">Reiniciar Juego</button>
               <div class="horizontal">
               <button class="redesJuego">
                 <a href="#"><img src="img/email.svg" /></a>
@@ -438,7 +485,7 @@
       </section>
     </div>
     <button class="scroll-top" type="button">
-      <img class="flechaArriba" src="img/fechaAbajo.svg" />
+      <img class="flechaArriba" src="img/flechaAbajo.svg" />
     </button>
     <footer class="footer">
       <div class="footerContainerMaster">
@@ -505,6 +552,9 @@
     <!---Script-->
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/boton.js"></script>
-
+    <script src="js/Chip.js"></script>
+    <script src="js/Board.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

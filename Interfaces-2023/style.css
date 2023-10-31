@@ -89,7 +89,7 @@ nav,
   align-items: center;
 }
 
-.fechaAbajo {
+.flechaAbajo {
   width: 12px;
   height: 6px;
 }
@@ -858,13 +858,13 @@ h3 span{
     margin-bottom: 20px;
   }
 
-  .juego img {
+  .juegoSidebar img {
     width: 800px;
     height: 600px;
     object-fit: cover;
     border-radius: 16px 16px 0px 0px;
   }
-  .juego{
+  .juegoSidebar{
     margin: 0;
     padding: 0;
   }
@@ -1053,7 +1053,7 @@ h3 span{
     align-items: center;
   }
 
-  .fechaAbajo {
+  .flechaAbajo {
     width: 12px;
     height: 6px;
   }
@@ -1634,4 +1634,201 @@ hr{
   margin: 0;
   border: transparent;
   border-radius: 4px;
+}
+/*------------------Variables que uso en js-------------*/
+--var--rows: 6;
+--var--cols: 7;
+}
+   /*-----------------------------Fuentes-----------------------------*/
+
+   .fondo h1 {
+   color: var(--blanco);
+   font-size: 58px;
+   font-weight: 600;
+   word-wrap: break-word;
+ }
+  .fondo h2 {
+   font-size: 42px;
+   font-family: Open Sans;
+   font-weight: 700;
+   letter-spacing: 3.24px;
+   word-wrap: break-word;
+ }
+
+ .fondo h3 {
+   color: var(--blanco);
+   font-size: 30px;
+   font-weight: 400;
+   word-wrap: break-word;
+ }
+
+ .fondo p{
+   font-size: 16px;
+   font-family: Open Sans;
+   margin-top: 15px;
+   color: var(--acento);
+ }
+
+  
+
+
+/*----------------------Preferencias---------------------------*/
+.fondo{
+  padding-top: 50px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.fondo .preferencias{
+   margin-left: 70px;
+   max-width: 600px;
+   max-height: 400px;
+   padding: 3rem;
+   background: var(--negro);
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0 15rem var(--negro);
+   color: var(--blanco);
+  
+ }
+ .fondo .preferencias h1{
+   color: var(--blanco);
+   margin: auto;
+   font-size: Open-Sans;
+   font-size: 32px;
+   text-align: center;
+   margin-bottom: 2rem;
+ }
+
+ .fondo .formPreferencias{
+   display: flex;
+ }
+ 
+ .fondo .inputPreferencias{
+   margin: auto;
+   width: 100%;
+ }
+
+ .fondo .comboBox{
+   margin: 10px 0;
+   background: transparent;
+   border: 0px;
+   border-bottom: 2px solid var(--acento2);
+   padding: 10px;
+   color: var(--blanco);
+   width: 100%;
+ }
+
+ .fondo option{
+   background-color: var(--acento2);
+ }
+
+/*---------------------Juego-------------------------------------*/
+.fondo #juego{
+ display:flex;
+}
+
+
+.fondo{
+ width: 800px;
+ height: 600px;
+ background-image: url('./images/mesa.jpg');
+ background-size: cover; /* Otra opción podría ser 'contain' para ajustar la imagen al tamaño del contenedor */
+ background-repeat: no-repeat;
+ background-attachment: fixed; /* Esto mantiene la imagen fija en su posición al desplazar la página */
+ background-color: var(--primarioSombra1); /* Un color de fondo de respaldo si la imagen no se carga o se muestra parcialmente */
+}
+
+.fondo .popupJuego {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: var(--primario);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   visibility: hidden;
+}
+.fondo .ganador {
+   background: var(--primario);
+   width: max-content;
+   height: max-content;
+   border-radius: 3px;
+   box-shadow: 0px 0px 5px 8px var(--estado);
+   background-image: url('../images/fondoPopUp.gif');
+   background-color: var(--estadoHover);
+
+}
+.fondo .popupGanador {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.fondo .popupGanador p {
+   font-weight: bold;
+   font-size: 40px;
+   margin-top: 160px;
+   margin-left: 40px;
+}
+.fondo .ganador .jugar {
+   margin-top: 90px;
+   margin-left: 160px;
+}
+
+.fondo .active {
+   visibility: visible;
+}
+
+.fondo .reset {
+   position: absolute;
+   top: 90%;
+   right: 2.2%;
+   background-color:var(--peligro);
+   color: var(--acento2);
+   font-weight: bold;
+   font-size: 15px;
+   width: 120px;
+   border-radius: 10px;
+   box-shadow: 0px 0px 5px 10px var(--primario);
+}
+
+.fondo image{
+ width: 50px;
+ height: 50px;
+}
+
+.fondo button.reset{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.botoneraRedes button.jugar{
+  display: flex;
+  align-items: center;
+  margin-left: 400px;
+  position: relative;
+  height: 20px;
+  width: max-content;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+  color: var(--blanco);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.fondo button.jugar{
+display: flex;
+align-items: center;
+position: relative;
+height: 40px;
+width: max-content;
+padding: 10px;
+border-radius: 8px;
+font-weight: bolder;
+color: var(--blanco);
+border: solid 1px var(--blanco);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
