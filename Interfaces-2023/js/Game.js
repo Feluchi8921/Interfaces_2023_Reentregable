@@ -50,7 +50,7 @@ class Game {
     
     loadBoard() {
         var img = new Image();
-            img.src = './images/board2.png';
+            img.src = './img/board2.png';
             img.onload = () => {
                 this.board = new Board(img, this.ctx);
                 this.board.draw();
@@ -67,7 +67,7 @@ class Game {
     loadChips() {
         if( !this.imgChip1 ) {
             this.imgChip1 = new Image();
-            this.imgChip1.src = `./images/chips/${this.gamers.g1.name}.svg`;
+            this.imgChip1.src = `./img/chips/${this.gamers.g1.name}.svg`;
             this.imgChip1.onload = () => {
                 this.changedchipsG1 = true;
                 this.loadChipsG1(this.imgChip1);
@@ -79,7 +79,7 @@ class Game {
 
         if( !this.imgChip2 ) {
             this.imgChip2 = new Image();
-            this.imgChip2.src = `./images/chips/${this.gamers.g2.name}.svg`;
+            this.imgChip2.src = `./img/chips/${this.gamers.g2.name}.svg`;
             this.imgChip2.onload = () => {
                 this.changedchipsG2 = true;
                 this.loadChipsG2(this.imgChip2);

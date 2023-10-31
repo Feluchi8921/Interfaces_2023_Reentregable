@@ -1731,7 +1731,7 @@ hr{
 .fondo{
  width: 800px;
  height: 600px;
- background-image: url('./images/mesa.jpg');
+ background-image: url('./img/mesa.jpg');
  background-size: cover; /* Otra opción podría ser 'contain' para ajustar la imagen al tamaño del contenedor */
  background-repeat: no-repeat;
  background-attachment: fixed; /* Esto mantiene la imagen fija en su posición al desplazar la página */
