@@ -141,8 +141,8 @@ window.addEventListener("DOMContentLoaded", () => {
 //   }, 5000);
 // }
 
-boton.addEventListener("click", mostrarPopup);
-});
+//boton.addEventListener("click", mostrarPopup);
+//});
 
 // Selecciona todos los botones "desplegar"
 const desplegarButtons = document.querySelectorAll(".desplegar");

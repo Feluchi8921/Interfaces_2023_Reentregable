@@ -96,9 +96,6 @@ class Game {
             for(this.i = this.chips.length; this.i < this.quantityChips/2; this.i+=1) {
     
                 this.chips.push(new Chip(70, this.y, this.radius, this.gamers.g1.color, img, this.ctx));
-                //this.chips.push(new Chip(105, this.y, this.radius, this.gamers.g1.color, img, this.ctx));
-                //this.chips.push(new Chip(190, this.y, this.radius, this.gamers.g1.color, img, this.ctx));
-                
                 this.y += 22;
             }
         }
@@ -110,10 +107,7 @@ class Game {
             this.y = 113;
             for(this.i = this.chips.length; this.i < this.quantityChips; this.i+=1) {
     
-                this.chips.push(new Chip(730, this.y, this.radius, this.gamers.g2.color, img, this.ctx));
-                //this.chips.push(new Chip(875, this.y, this.radius, this.gamers.g2.color, img, this.ctx));
-                //this.chips.push(new Chip(940, this.y, this.radius, this.gamers.g2.color, img, this.ctx));
-    
+                this.chips.push(new Chip(730, this.y, this.radius, this.gamers.g2.color, img, this.ctx));    
                 this.y += 22;
             }
         }

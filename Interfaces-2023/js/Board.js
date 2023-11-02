@@ -6,13 +6,14 @@ class Board {
         this.img = img;
         this.x = 100;
         this.y = 100;
-        this.cols = 7;
-        this.rows = 6;
+        this.rows = document.getElementById('n_juego').value;
+        this.cols = document.getElementById('n_juego').value; //revisar creo q estan al reves
         this.boardPositions = this.generatePositions();
         this.dropZones = this.generateDropZones();
         this.chips = [];
         this.aWinner = null;
     }
+
 
     draw() {
         this.drawDropZones();
@@ -32,22 +33,20 @@ class Board {
         this.boardPositions[col][row].color = chip.color;
     }
     
+//----------variables
 
     generatePositions() {
 
         let positions=[[],[],[],[],[],[],[]];
-
         let pos1_1=[191.5, 137];
         let pos_x = pos1_1[0];
         let pos_y = pos1_1[1];
 
         let diff_x = 361.5 - 291.5;
         let diff_y = 207 - 137;
-// debugger;
-        for(let x = 0; x < 7; x++) {
-            for(let y = 0; y < 6; y++) {
+        for(let x = 0; x < this.cols; x++) {
+            for(let y = 0; y < this.rows; y++) {
                 positions[x][y] = {x:pos_x, y:pos_y, color:'', taked:false};
-                // this.testDrawOneChip(pos_x, pos_y)
                 pos_y += diff_y;
             }
             pos_x += diff_x;
@@ -63,10 +62,10 @@ class Board {
         let diff_x = 70;
         
         let positions = [];
-
-        for(let i = 0; i < 7; i++){
+        
+        for(let i = 0; i < this.cols; i++){
+            console.log();
             positions[i] = {x1:pos_x, y1:10, x2:pos_x+ww, y2:161, col:i, width:ww, height:151};
-
             pos_x += diff_x;
         }
         return positions;
@@ -112,7 +111,7 @@ class Board {
                     console.log('indefinido');
                     console.log(this.boardPositions[0][9]);
                 } else {
-                    // console.log(this.boardPositions[6][0]);
+                    // console.log(this.boardPositions[this.rows][0]);
                 }
                 //chequear ganador
                 if(this.InConditionOfWin()){
@@ -166,7 +165,7 @@ class Board {
     }
 
     InConditionOfWin() {
-        return this.chips.length >= 7 ? true : false;
+        return this.chips.length >= this.cols ? true : false;
     }
 
     checkWinner(chip, col, row) {
@@ -183,7 +182,7 @@ class Board {
         let count = 1// 1 ficha, sobre la que se arranca a chequear
         for(let i = 1; i < 4; i++) {
             let c = col + i; //columna hacia la derecha
-            if(c < 7) {
+            if(c < this.cols) {
                 if(this.boardPositions[c][row].color == color) { //si hay una ficha de igual color, sumo
                     // console.log('algo');
                     count++;
@@ -216,7 +215,7 @@ class Board {
         let count = 1// 1 ficha, sobre la que se arranca a chequear
         for(let i = 1; i < 4; i++) {
             let r = row + i; // fila hacia abajo
-            if(r < 6) {
+            if(r < this.rows) {
                 if(this.boardPositions[col][r].color == color) { //si hay una ficha de igual color, sumo
                     // console.log('algo');
                     count++;
@@ -250,7 +249,7 @@ class Board {
         for(let i = 1; i < 4; i++) {
             let c = col + i; // columna hacia derecha
             let r = row + i; // fila hacia abajo
-            if(r < 6 && c < 7) {
+            if(r < this.rows && c < this.cols) {
                 if(this.boardPositions[c][r].color == color) { //si hay una ficha de igual color, sumo
                     // console.log('algo');
                     count++;
@@ -285,7 +284,7 @@ class Board {
         for(let i = 1; i < 4; i++) {
             let c = col - i; // columna hacia izquierda
             let r = row + i; // fila hacia abajo
-            if(c > -1 && r < 6) {
+            if(c > -1 && r < this.rows) {
                 if(this.boardPositions[c][r].color == color) { //si hay una ficha de igual color, sumo
                     // console.log('algo');
                     count++;
@@ -300,7 +299,7 @@ class Board {
         for(let i = 1; i < 4; i++) {
             let c = col + i; // columna hacia derecha
             let r = row - i; // fila hacia la arriba
-            if(r > -1 && r < 6) {
+            if(r > -1 && r < this.rows) {
                 if(this.boardPositions[c][r].color == color) { //si hay una ficha de igual color, sumo
                     // console.log('algo');
                     count++;
