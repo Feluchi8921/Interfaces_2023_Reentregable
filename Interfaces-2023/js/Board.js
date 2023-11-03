@@ -14,7 +14,11 @@ class Board {
         this.aWinner = null;
     }
 
-
+    startNewGame() {
+        board = Array.from(Array(COLUMNS), () => Array(ROWS).fill(-1));
+        currentPlayer = 0;
+        drawBoard();
+    }
     draw() {
         this.drawDropZones();
         this.drawChips();
