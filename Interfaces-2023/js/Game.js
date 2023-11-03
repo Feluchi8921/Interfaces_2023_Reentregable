@@ -1,4 +1,5 @@
 "use strict";
+
 class Game {
 
     constructor(gamers, canvas) {
@@ -22,42 +23,40 @@ class Game {
         this.shiftTime = 30;
         this.timer = this.shiftTime;
         this.shiftControl = setInterval(() => {
-                                if(this.timer < 0) {
-                                    this.changeTurn();
-                                    this.timer = this.shiftTime;
-                                }
-                                this.infoTimer("Tiempo restante: ", this.timer, this.turn);
-                                this.draw();
-                                this.timer--;
-                            }, 1000);
+            if (this.timer < 0) {
+                this.changeTurn();
+                this.timer = this.shiftTime;
+            }
+            this.infoTimer("Tiempo restante: ", this.timer, this.turn);
+            this.draw();
+            this.timer--;
+        }, 1000);
     }
-    
-    
+
+
     draw() {
-        //borro canvas
+        // Borro canvas
         this.canvas.width = this.canvas.width;
-        //dibujo el tablero
+        // Dibujo el tablero
         this.drawBoard();
-        // this.loadChips();
         this.drawChips();
-        
-        // debugger;
+
         this.drawTurn(this.turn);
 
         this.infoTimer("Tiempo restante: ", this.timer, this.turn);
-        // this.shiftControl;
     }
-    
+
     loadBoard() {
         var img = new Image();
-            img.src = './img/board2.png';
-            img.onload = () => {
-                this.board = new Board(img, this.ctx);
-                this.board.draw();
-            }
+        img.src = './img/board2.png';
+        img.onload = () => {
+            this.board = new Board(img, this.ctx, this.canvas.width, this.canvas.height);
+            this.board.draw();
+        }
     }
+
     drawBoard() {
-        if(this.board) {
+        if (this.board) {
             this.board.draw();
         } else {
             this.loadBoard();
@@ -65,7 +64,7 @@ class Game {
     }
 
     loadChips() {
-        if( !this.imgChip1 ) {
+        if (!this.imgChip1) {
             this.imgChip1 = new Image();
             this.imgChip1.src = `./img/chips/${this.gamers.g1.name}.svg`;
             this.imgChip1.onload = () => {
@@ -77,7 +76,7 @@ class Game {
             this.loadChipsG1(this.imgChip1);
         }
 
-        if( !this.imgChip2 ) {
+        if (!this.imgChip2) {
             this.imgChip2 = new Image();
             this.imgChip2.src = `./img/chips/${this.gamers.g2.name}.svg`;
             this.imgChip2.onload = () => {
@@ -91,32 +90,29 @@ class Game {
     }
 
     loadChipsG1(img) {
-        if(!this.changedchips) {
-            this.y = 113;
-            for(this.i = this.chips.length; this.i < this.quantityChips/2; this.i+=1) {
-    
-                this.chips.push(new Chip(70, this.y, this.radius, this.gamers.g1.color, img, this.ctx));
-                this.y += 22;
+        if (!this.changedchipsG1) {
+            let y = 113;
+            for (let i = this.chips.length; i < this.quantityChips / 2; i += 1) {
+                this.chips.push(new Chip(70, y, this.radius, this.gamers.g1.color, img, this.ctx));
+                y += 22;
             }
         }
-        // fichas en mesa listas para jugar
         this.drawChips();
     }
+
     loadChipsG2(img) {
-        if(!this.changedchips) {
-            this.y = 113;
-            for(this.i = this.chips.length; this.i < this.quantityChips; this.i+=1) {
-    
-                this.chips.push(new Chip(730, this.y, this.radius, this.gamers.g2.color, img, this.ctx));    
-                this.y += 22;
+        if (!this.changedchipsG2) {
+            let y = 113;
+            for (let i = this.chips.length; i < this.quantityChips; i += 1) {
+                this.chips.push(new Chip(730, y, this.radius, this.gamers.g2.color, img, this.ctx));
+                y += 22;
             }
         }
-        // this.chips.forEach(c => c.draw());
         this.drawChips();
     }
 
     drawChips() {
-        if(this.board) {
+        if (this.board) {
             this.board.draw();
         } else {
             this.loadBoard();
@@ -125,23 +121,23 @@ class Game {
         this.chips.forEach(c => c.draw());
     }
 
-    chipHit(x,y) {
-        for(let i = 0; i < this.chips.length; i++) {
-            if(this.chips[i].isHit(x,y) && this.chips[i].color == this.turn.color) { //si estoy clickeando alguna ficha y es del color del turno
+    chipHit(x, y) {
+        for (let i = 0; i < this.chips.length; i++) {
+            if (this.chips[i].isHit(x, y) && this.chips[i].color == this.turn.color) {
                 this.chipInMovement = this.chips[i];
                 return true;
             }
         };
         return false;
     }
-    
+
     getChipInMovement() {
         return this.chipInMovement;
     }
 
-    moveChip(x,y) {
-        if(!this.chipInMovement) return;
-        if(!this.radiusChanged){
+    moveChip(x, y) {
+        if (!this.chipInMovement) return;
+        if (!this.radiusChanged) {
             this.chipInMovement.setRadius(this.chipInMovement.getRadius() + this.radiusChange);
             this.radiusChanged = true;
         }
@@ -150,19 +146,15 @@ class Game {
     }
 
     chipDropped() {
-        // debugger;
-        if(this.radiusChanged) {
+        if (this.radiusChanged) {
             this.chipInMovement.setRadius(this.chipInMovement.getRadius() - this.radiusChange);
             this.radiusChanged = false;
         }
-        //chequeo si esta en una dropZone y si tiene lugar para posicionarse
-        if(this.board.checkChip(this.chipInMovement)){
-            //devuelve verdadero si encontro un lugar para la ficha
-            //borrar ficha del conjunto en juego
+
+        if (this.board.checkChip(this.chipInMovement)) {
             this.timer = this.shiftTime
             this.changeTurn();
-            // console.log(this.turn);
-            if(this.delete(this.chipInMovement)) {
+            if (this.delete(this.chipInMovement)) {
                 this.draw()
             }
         } else {
@@ -173,25 +165,23 @@ class Game {
     }
 
     returnChipToStart() {
-        if(this.chipInMovement){
-            // console.log(this.chipInMovement.x,this.chipInMovement.y);
+        if (this.chipInMovement) {
             this.chipInMovement.returnToStart();
             this.draw();
-            // console.log(this.chipInMovement.x,this.chipInMovement.y);
         }
     }
 
     delete(chip) {
         let i = this.chips.indexOf(chip);
-        if(i !== -1) {
-            this.chips.splice(i,1);
+        if (i !== -1) {
+            this.chips.splice(i, 1);
             return true;
         }
         return false;
     }
 
     changeTurn() {
-        if(this.gamers['g1'] == this.turn)
+        if (this.gamers['g1'] == this.turn)
             this.turn = this.gamers['g2']
         else
             this.turn = this.gamers['g1']
@@ -201,15 +191,15 @@ class Game {
         this.ctx.beginPath();
         this.ctx.fillStyle = gamer.color;
         this.ctx.font = "bold 18px Open Sans";
-        this.ctx.textAlign='start';
+        this.ctx.textAlign = 'start';
         this.ctx.textBaseline = 'center';
         let text = `Juega ${gamer.name}`;
-        
-        if(gamer.color == this.gamers['g1'].color)
+
+        if (gamer.color == this.gamers['g1'].color)
             this.ctx.fillText(text, 23, 40);
         else
             this.ctx.fillText(text, 680, 40);
-        
+
         this.ctx.closePath();
     }
 
@@ -217,18 +207,17 @@ class Game {
         this.ctx.beginPath();
         this.ctx.fillStyle = "#262626";
         this.ctx.font = "bold 28px Open Sans";
-        this.ctx.textAlign='center';
+        this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'center';
-        
+
         let text = `${txt} ${timer}`;
         this.ctx.fillText(text, 400, 580);
-        
     }
 
     getWinner() {
         let winnerColor = this.board.getWinner();
-        if(winnerColor) {
-            if(this.gamers['g1'].color == winnerColor)
+        if (winnerColor) {
+            if (this.gamers['g1'].color == winnerColor)
                 return this.gamers['g1'];
             else
                 return this.gamers['g2'];
@@ -237,11 +226,10 @@ class Game {
     }
 
     gameComplete() {
-       clearInterval(this.shiftControl);
+        clearInterval(this.shiftControl);
     }
 
     reset() {
-        // debugger;
         this.board = null;
         this.chips = [];
         this.loadChips();
@@ -251,19 +239,18 @@ class Game {
         this.changedchipsG2 = false;
         this.radiusChanged = false;
         this.timer = this.shiftTime;
-        
+
         clearInterval(this.shiftControl);
         this.shiftControl = setInterval(() => {
-                                if(this.timer < 0) {
-                                    this.changeTurn();
-                                    this.timer = this.shiftTime;
-                                }
-                                this.infoTimer("Tiempo restante: ", this.timer, this.turn);
-                                this.draw();
-                                this.timer--;
-                            }, 1000);
+            if (this.timer < 0) {
+                this.changeTurn();
+                this.timer = this.shiftTime;
+            }
+            this.infoTimer("Tiempo restante: ", this.timer, this.turn);
+            this.draw();
+            this.timer--;
+        }, 1000);
 
         this.draw();
     }
-
 }
